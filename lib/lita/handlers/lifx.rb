@@ -68,7 +68,7 @@ module Lita
           brightness=response.matches[0][0]
           lights=lights_from_tag response.matches[0][1]
           response.reply brightness
-          lights.lights.each {|bulb| bulb.set_color(bulb.color.with_brightness(brightness.to_i/100.0)) }
+          lights.lights.each {|bulb| bulb.set_color(bulb.color(refresh: true).with_brightness(brightness.to_i/100.0)) }
           response.reply "Brightness set to #{brightness}%"
         rescue UnknownTagError => e
           response.reply e.to_s
